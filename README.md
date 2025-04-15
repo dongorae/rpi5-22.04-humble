@@ -71,6 +71,24 @@ docker run -itd \
   ros:humble
   ```
 
+
+```bash
+xhost +local:root
+
+docker run -d \
+  --privileged \
+  --network host \
+  --cgroupns=host \
+  -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
+  --name deepracer \
+  --restart unless-stopped \
+  -v /dev:/dev \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  ros:humble /sbin/init
+```
+
+
 ```bash
 docker exec -it deepracer /bin/bash
 ```
