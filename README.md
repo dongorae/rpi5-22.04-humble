@@ -83,9 +83,11 @@ docker run -d \
   -v /dev:/dev \
   -e DISPLAY=$DISPLAY \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
-  --name systemd_container \
-  ubuntu:22.04 \
+  --name deepracer \
+  --restart unless-stopped \
+  ros:humble \
   bash -c "apt-get update && apt-get install -y systemd systemd-sysv && exec /lib/systemd/systemd"
+
 
 ```
 
