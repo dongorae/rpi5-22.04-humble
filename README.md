@@ -70,3 +70,7 @@ docker run -itd \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   ros:humble
   ```
+
+```bash
+docker exec -it deepracer /bin/bash
+```
