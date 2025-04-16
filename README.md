@@ -80,6 +80,7 @@ docker run -d \
   --network host \
   --cgroupns=host \
   -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
+  -v /sys:/sys \
   -v /dev:/dev \
   -e DISPLAY=$DISPLAY \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -91,7 +92,26 @@ docker run -d \
 
 ```
 
+```dockerfile
+FROM ros:humble
+RUN apt-get update && apt-get install -y systemd systemd-sysv
+CMD ["/lib/systemd/systemd"]
+```
+
+```bash
+docker build -t deepracer:latest
+```
+
 
 ```bash
 docker exec -it deepracer /bin/bash
 ```
+
+https://forums.docker.com/t/docker-image-is-missing-gpio-in-sys-class/141420/5
+
+
+lib-gpio
+
+gpio-sysfs
+
+https://raspberrypi.stackexchange.com/questions/148769/troubleshooting-pwm-via-sysfs
