@@ -101,7 +101,7 @@ apt-get update && apt-get install -y usbutils
 ```bash
 git clone https://github.com/brgl/gpiod-sysfs-proxy
 cd gpiod-sysfs-proxy
-sed -i 's/BASE = 512/BASE = 0/' gpiod-sysfs-proxy
+sed -i 's/BASE = 512/BASE = 437/' gpiod-sysfs-proxy
 # 동일한 _add_chip() 패치 적용
 python3 -m pip install .
 ```
