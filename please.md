@@ -1,18 +1,72 @@
-## 1 단계 · 호스트(RPi 5) 쪽 설정
 
-### A. 디바이스 오버레이
+
+
+## 1 단계 · 호스트(RPi 5) 쪽 설정  
+
+### A. 디바이스 오버레이  
 
 `/boot/firmware/config.txt`
 
-```ini
-# SoC 2채널 PWM (모터·서보)
-dtoverlay=pwm-2chan             # GPIO18/PWM0  GPIO19/PWM1
-dtoverlay=pwm,pin=13,func=4     # GPIO13/PWM2  (RGB enable)
+- SoC 2채널 PWM 사용	dtoverlay=pwm-2chan
+- PWM2 (GPIO13 → LED enable 용도)	dtoverlay=pwm,pin=13,func=4
+- PCA9685 GPIO 확장칩	dtoverlay=pca9685,addr=0x40,pin_base=488
 
-# PCA9685 16‑채널 서보‑HAT를 I2C‑GPIO로 노출 → gpiochip base=488
+```ini
+[all]
+arm_64bit=1
+kernel=vmlinuz
+cmdline=cmdline.txt
+initramfs initrd.img followkernel
+
+# Enable the audio output, I2C and SPI interfaces on the GPIO header. As these
+# parameters related to the base device-tree they must appear *before* any
+# other dtoverlay= specification
+dtparam=audio=on
+dtparam=i2c_arm=on
+dtparam=spi=on
+
+# --- PWM 및 GPIO 확장 칩 설정 (추가) ---
+dtoverlay=pwm-2chan
+dtoverlay=pwm,pin=13,func=4
 dtoverlay=pca9685,addr=0x40,pin_base=488
-#          └──── I2C 주소 (HAT 기본 0x40)
-#                               └─ 예전 rpi4 빌드에서 썼던 base
+
+# Comment out the following line if the edges of the desktop appear outside
+# the edges of your display
+disable_overscan=1
+
+# If you have issues with audio, you may try uncommenting the following line
+# which forces the HDMI output into HDMI mode instead of DVI (which doesn't
+# support audio output)
+#hdmi_drive=2
+
+# Enable the KMS ("full" KMS) graphics overlay, leaving GPU memory as the
+# default (the kernel is in control of graphics memory with full KMS)
+dtoverlay=vc4-kms-v3d
+disable_fw_kms_setup=1
+
+# Autoload overlays for any recognized cameras or displays that are attached
+# to the CSI/DSI ports. Please note this is for libcamera support, *not* for
+# the legacy camera stack
+camera_auto_detect=1
+display_auto_detect=1
+
+# Config settings specific to arm64
+dtoverlay=dwc2
+
+[pi4]
+max_framebuffers=2
+arm_boost=1
+
+[pi3+]
+dtoverlay=vc4-kms-v3d,cma-128
+
+[pi02]
+dtoverlay=vc4-kms-v3d,cma-128
+
+[cm4]
+dtoverlay=dwc2,dr_mode=host
+
+[all]
 ```
 
 ### B. 필수 디바이스 패스스루
