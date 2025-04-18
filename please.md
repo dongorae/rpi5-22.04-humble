@@ -26,9 +26,8 @@ dtparam=i2c_arm=on
 dtparam=spi=on
 
 # --- PWM 및 GPIO 확장 칩 설정 (추가) ---
-dtoverlay=pwm-2chan
-dtoverlay=pwm,pin=13,func=4
-dtoverlay=pca9685,addr=0x40,pin_base=488
+dtoverlay=dwc2
+dtoverlay=i2c-pwm-pca9685a,addr=0x40
 
 # Comment out the following line if the edges of the desktop appear outside
 # the edges of your display
