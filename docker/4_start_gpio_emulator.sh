@@ -6,3 +6,8 @@ if ! mountpoint -q /sys/class/gpio; then
     sudo gpiod-sysfs-proxy /sys/class/gpio -o nonempty -o allow_other -o default_permissions -o entry_timeout=0
 fi
 
+### stop
+# sudo pkill -f "gpiod-sysfs-proxy /sys/class/gpio" 2>/dev/null
+# sudo fusermount -u /sys/class/gpio        2>/dev/null
+# sudo umount /sys/class                    2>/dev/null
+# sudo umount /run/gpio/sys                 2>/dev/null
