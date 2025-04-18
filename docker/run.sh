@@ -6,9 +6,9 @@ docker run -d \
     --privileged \
     --network host \
     --cgroupns=host \
-    -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
     -v /sys:/sys \
     -v /dev:/dev \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v /home/deepracer/Desktop/workspace:/workspace \
     -e DISPLAY=$DISPLAY \
     deepracer:latest
