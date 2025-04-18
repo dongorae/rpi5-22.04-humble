@@ -99,13 +99,39 @@ CMD ["/lib/systemd/systemd"]
 ```
 
 ```bash
-docker build -t deepracer:latest
+docker build -t deepracer:latest .
 ```
 
+```bash
+docker run -d \
+  --name deepracer \
+  --privileged \
+  --network host \
+  --cgroupns=host \
+  -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
+  -v /sys:/sys \
+  -v /dev:/dev \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -e DISPLAY=$DISPLAY \
+  deepracer:latest
+```
+
+```bash
+docker run -d \
+  --name deepracer \
+  --privileged \
+  --network host \
+  --cgroupns=host \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -e DISPLAY=$DISPLAY \
+  deepracer:latest
+```
 
 ```bash
 docker exec -it deepracer /bin/bash
 ```
+
+
 
 https://forums.docker.com/t/docker-image-is-missing-gpio-in-sys-class/141420/5
 
