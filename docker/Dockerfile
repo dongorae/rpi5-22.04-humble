@@ -1,4 +1,5 @@
-FROM ros:humble
+# FROM ros:humble
+FROM ubuntu:22.04
 
 # 1) 패키지 설치 (systemd + GPIO/FUSE + pip)
 RUN apt-get update && \
