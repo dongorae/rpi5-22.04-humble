@@ -1,5 +1,5 @@
 #!/bin/bash
-
+mkdir -p /home/deepracer/Desktop/workspace
 docker run -d \
     --name deepracer \
     --restart unless-stopped \
