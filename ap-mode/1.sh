@@ -17,3 +17,5 @@ wpa_key_mgmt=WPA-PSK
 wpa_passphrase=my_password
 rsn_pairwise=CCMP
 EOF
+
+
