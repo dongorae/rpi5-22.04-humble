@@ -66,6 +66,7 @@ dtoverlay=vc4-kms-v3d,cma-128
 dtoverlay=dwc2,dr_mode=host
 
 [all]
+
 ```
 
 ### B. 필수 디바이스 패스스루
