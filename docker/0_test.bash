@@ -14,3 +14,6 @@ sudo docker run -itd \
   -e DISPLAY=$DISPLAY \
   physicar/deepracer:latest \
   bash
+
+DEBIAN_FRONTEND=noninteractive \
+  apt-get install -y sudo git usbutils systemd systemd-sysv
