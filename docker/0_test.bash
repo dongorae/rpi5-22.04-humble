@@ -10,7 +10,6 @@ docker run -d \
   -v /dev:/dev \
   -v /opt:/opt \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
-  -v /home/deepracer/Desktop/workspace:/workspace \
   -e DISPLAY=$DISPLAY \
   deepracer:latest \
   bash
