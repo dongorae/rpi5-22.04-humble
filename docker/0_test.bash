@@ -1,8 +1,9 @@
 wget https://desktop.docker.com/linux/main/arm64/187762/docker-desktop-arm64.deb
 sudo apt install ./docker-desktop-arm64.deb
 
-docker run -itd \
+sudo docker run -itd \
   --name deepracer \
+  --restart unless-stop \
   --privileged \
   --network host \
   --cgroupns=host \
