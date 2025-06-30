@@ -11,5 +11,5 @@ docker run -d \
   -v /opt:/opt \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -e DISPLAY=$DISPLAY \
-  deepracer:latest \
+  physicar/deepracer:latest \
   bash
