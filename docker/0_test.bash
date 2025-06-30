@@ -3,7 +3,7 @@ sudo apt install ./docker-desktop-arm64.deb
 
 sudo docker run -d \
   --name deepracer \
-  --restart unless-stop \
+  --restart unless-stopped \
   --privileged \
   --network host \
   --cgroupns=host \
